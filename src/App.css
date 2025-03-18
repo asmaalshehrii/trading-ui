@@ -1,16 +1,26 @@
 .app-container {
   padding: 2rem;
-  background-color: #f9fafb;
+  background: linear-gradient(to bottom right, #0f172a, #1e293b); /* Deep blue vibe */
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f1f5f9;
 }
+
 
 .app-title {
   text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  letter-spacing: 0.5px;
 }
+
+
 
 .button-group {
   display: flex;
@@ -21,33 +31,53 @@
 }
 
 button {
-  background-color: #4f46e5;
+  /* ❌ remove this line */
+  /* background: linear-gradient(to right, #6366f1, #3b82f6); */
+
   color: white;
-  padding: 10px 16px;
+  padding: 12px 20px;
+  font-size: 1rem;
   border: none;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
+
 button:hover {
-  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+
+.start-button {
+  background-color: #16a34a !important;  /* ✅ Force green */
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #15803d !important;  /* ✅ Darker green on hover */
 }
 
 .pause-button {
-  background-color: #dc2626;
-}
-.pause-button:hover {
-  background-color: #b91c1c;
+  background-color: #dc2626 !important;  /* ✅ Force red */
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
-.start-button {
-  background-color: #16a34a;
+.pause-button:hover {
+  background-color: #b91c1c !important;  /* ✅ Darker red on hover */
 }
-.start-button:hover {
-  background-color: #15803d;
-}
+
+
 
 .orders-grid {
   display: grid;
@@ -55,13 +85,52 @@ button:hover {
   gap: 1.5rem;
 }
 
+
+
+
+
 .orders-card {
-  background-color: white;
-  border-radius: 8px;
+  background-color: #1e293b;
+  border-radius: 10px;
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #f8fafc;
+  overflow-y: auto;         /* Enable vertical scroll */
+  max-height: 500px;        /* Set max height to trigger scroll when content overflows */
+  border: 1px solid #334155;
 }
 
+/* Optional: Scrollbar style */
+.orders-card::-webkit-scrollbar {
+  width: 6px;
+}
+.orders-card::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+}
+
+
+/* Optional: add icons or colored markers */
+.buy-title::before {
+  content: "🟢";
+  font-size: 1rem;
+}
+
+.sell-title::before {
+  content: "🔴";
+  font-size: 1rem;
+}
+
+.match-title::before {
+  content: "🔵";
+  font-size: 1rem;
+}
+
+
+
+
+
+/* Section headers */
 .buy-title {
   color: #16a34a;
 }
@@ -72,13 +141,72 @@ button:hover {
   color: #2563eb;
 }
 
+/* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
 }
 
-th, td {
-  padding: 6px 8px;
+th,
+td {
+  padding: 6px 10px;
   border-bottom: 1px solid #e5e7eb;
+  text-align: center;
 }
+
+.orders-card table th {
+  white-space: nowrap;
+}
+
+/* Align numeric values to the right */
+.orders-card td:nth-child(2),
+.orders-card td:nth-child(3),
+.orders-card td:nth-child(4) {
+  text-align: right;
+}
+
+/* Optional: Scrollbar styling */
+.orders-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.orders-card::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.4);
+  border-radius: 3px;
+}
+.subheading {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;}
+
+
+  .connect-button {
+    background: linear-gradient(to right, #6366f1, #3b82f6);
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .connect-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+  
+
+  .note {
+    text-align: center;
+    color: #facc15; /* yellow-400 for emphasis */
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  
+  
