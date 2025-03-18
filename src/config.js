@@ -1,2 +1,2 @@
-const BASE_URL = "https://*****";
+const BASE_URL = "https://final-matchtrade2.onrender.com";
 export default BASE_URL;
