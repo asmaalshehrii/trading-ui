@@ -1,2 +1,2 @@
-const BASE_URL = "https://tradingapp2-rgu9.onrender.com";
+const BASE_URL = "https://";
 export default BASE_URL;
