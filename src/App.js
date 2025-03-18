@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import BASE_URL from './config';
+
 
 function TradingApp() {
   const [buyOrders, setBuyOrders] = useState([]);
@@ -10,7 +12,8 @@ function TradingApp() {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch('http://localhost:18080/getOrders');
+      // const res = await fetch('http://localhost:18080/getOrders');
+      const res = await fetch(`${BASE_URL}/getOrders`);
       const data = await res.json();
       setBuyOrders(data.buyOrders || []);
       setSellOrders(data.sellOrders || []);
@@ -20,9 +23,11 @@ function TradingApp() {
   };
 
   const simulateOrders = async () => {
-    await fetch('http://localhost:18080/addRandomOrders', { method: 'POST' });
+    await fetch(`${BASE_URL}/addRandomOrders`, { method: 'POST' });
+    // await fetch('http://localhost:18080/addRandomOrders', { method: 'POST' });
     await fetchOrders();
   };
+ 
 
   const matchAllTickers = async () => {
     const tickers = new Set();
@@ -30,7 +35,7 @@ function TradingApp() {
     sellOrders.forEach((o) => tickers.add(o.ticker));
 
     for (const ticker of tickers) {
-      const res = await fetch('http://localhost:18080/matchOrder', {
+      const res = await fetch(`${BASE_URL}/matchOrder`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ticker }),
@@ -43,7 +48,8 @@ function TradingApp() {
   };
 
   const toggleAutoSim = async () => {
-    const res = await fetch('http://localhost:18080/toggleAutoSim', { method: 'POST' });
+    const res = await fetch(`${BASE_URL}/toggleAutoSim`, { method: 'POST' });
+    // const res = await fetch('http://localhost:18080/toggleAutoSim', { method: 'POST' });
     const data = await res.json();
     setAutoSimulating(data.autoSimulating);
   };
@@ -55,7 +61,9 @@ function TradingApp() {
       (async () => {
         await fetchOrders();
   
-        const res = await fetch('http://localhost:18080/getMatches');
+        const res = await fetch(`${BASE_URL}/getMatches`);
+        // const res = await fetch('http://localhost:18080/getMatches');
+        
         const data = await res.json();
         if (data.matches?.length > 0) {
           setMatches(data.matches);
@@ -78,11 +86,19 @@ function TradingApp() {
       <p className="subheading">
   Simulating live stock transactions and matching orders in real time.
 </p>
+
+
 {connected && (
-  <p className="note">
-    Note: QTY fields update dynamically based on live order matching.
-  </p>
+  <>
+    <p className="note">
+      Note: QTY fields update dynamically based on live order matching.
+    </p>
+    <p className="sub-note">
+      Order matching might take a few seconds depending on system load.
+    </p>
+  </>
 )}
+
 
 
       <div className="button-group">
@@ -115,6 +131,26 @@ function TradingApp() {
             >
               {autoSimulating ? 'Stop Accepting Trading Orders ⏹️' : 'Start Accepting Trading Orders ▶️'}
             </button>
+
+            <button
+  className="reset-button"
+  onClick={async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/reset`, { method: 'POST' });
+      // const res = await fetch( 'http://localhost:18080/reset', { method: 'POST' });
+     
+      const data = await res.json();
+      console.log("Reset:", data.status);
+      // Optionally re-fetch fresh data
+      await fetchOrders();
+      setMatches([]);
+    } catch (err) {
+      console.error("Reset failed:", err.message);
+    }
+  }}
+>
+  Reset Engine ♻️
+</button>
 
 
             
@@ -182,7 +218,13 @@ function TradingApp() {
             </table>
           </div>
         </div>
+
+        
       )}
+      <footer className="app-footer">
+  Built by <a href="https://github.com/asmaalshehrii" target="_blank" rel="noopener noreferrer">Asma Alshehri</a> 💻
+</footer>
+
     </div>
   );
 }
