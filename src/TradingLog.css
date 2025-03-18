@@ -1,0 +1,55 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .controls {
+    margin-bottom: 15px;
+  }
+  
+  .controls button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    font-weight: bold;
+  }
+  
+  .log-grid {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .log-column {
+    flex: 1;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  th {
+    background-color: #444;
+    color: white;
+    position: sticky;
+    top: 0;
+    padding: 6px;
+  }
+  
+  td {
+    padding: 6px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .green { color: green; }
+  .red { color: red; }
+  .blue { color: blue; }
+  

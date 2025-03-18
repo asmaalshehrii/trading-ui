@@ -1,68 +1,84 @@
-body {
+.app-container {
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #eef2f7;
-  color: #333;
-  margin: 0;
-  padding: 50px 0;
-  display: flex;
-  justify-content: center;
 }
 
-.container {
-  width: 100%;
-  max-width: 700px;
-  background-color: #ffffff;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  padding: 30px;
+.app-title {
   text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
 }
 
-.header {
-  color: #4a6ee0;
-  margin-bottom: 20px;
-}
-
-.simulate-btn {
-  background-color: #4a6ee0;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.simulate-btn:hover:not(:disabled) {
-  background-color: #3555b5;
-}
-
-.simulate-btn:disabled {
-  background-color: #a5b6e7;
-  cursor: not-allowed;
-}
-
-.results-card {
-  margin-top: 25px;
-  padding: 20px;
-  background-color: #fafcff;
-  border-radius: 8px;
-  border: 1px solid #e0e7ff;
-}
-
-.match-item {
+.button-group {
   display: flex;
-  justify-content: space-between;
-  padding: 8px 10px;
-  background-color: #ffffff;
-  margin-top: 10px;
-  border-radius: 6px;
-  border: 1px solid #e7edf9;
-  font-size: 14px;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-.no-matches {
-  color: #888;
-  font-style: italic;
+button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #4338ca;
+}
+
+.pause-button {
+  background-color: #dc2626;
+}
+.pause-button:hover {
+  background-color: #b91c1c;
+}
+
+.start-button {
+  background-color: #16a34a;
+}
+.start-button:hover {
+  background-color: #15803d;
+}
+
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.orders-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.buy-title {
+  color: #16a34a;
+}
+.sell-title {
+  color: #dc2626;
+}
+.match-title {
+  color: #2563eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e5e7eb;
 }
